@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="description" content="FaceArt – draw glasses, crowns and designs on your face in real time, privately in your browser." />
+<meta name="theme-color" content="#0b0b14" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<title>FaceArt – Real-Time Face Drawing Studio</title>
+</head>
+<body>
+<header class="nav glass">
+  <a class="logo" href="#top"><span class="logo-mark"></span>FaceArt</a>
+  <nav><a href="#features">Features</a><a href="#how">How it works</a><a href="#about">About</a></nav>
+  <button class="btn small" data-open-studio>Start Creating</button>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <p class="eyebrow">Real-time AI face tracking</p>
+    <h1>Your Face, <span class="grad">Your Canvas</span></h1>
+    <p class="sub">Turn on your camera and draw glasses, crowns, moustaches and freehand art that follow every move of your face. Everything runs privately in your browser.</p>
+    <button class="btn big" data-open-studio>Start Creating</button>
+    <div class="preview glass" aria-hidden="true">
+      <div class="p-face"><i class="p-crown"></i><i class="p-eye l"></i><i class="p-eye r"></i><i class="p-glass"></i><i class="p-mous"></i></div>
+    </div>
+  </section>
+
+  <section id="features" class="section">
+    <h2>Features</h2>
+    <div class="grid">
+      <article class="card glass"><h3>👓 Glasses</h3><p>Frames locked to your eyes, scaled and rotated with your head.</p></article>
+      <article class="card glass"><h3>👑 Crown</h3><p>A golden crown that sits above your forehead.</p></article>
+      <article class="card glass"><h3>🥸 Moustache</h3><p>Placed under the nose, moves with your face.</p></article>
+      <article class="card glass"><h3>✨ Decorations</h3><p>Cheek blush, face-outline glow and sparkles.</p></article>
+      <article class="card glass"><h3>🖌️ Freehand</h3><p>Draw with mouse or finger. Colour, brush size and eraser included.</p></article>
+      <article class="card glass"><h3>🔒 Private</h3><p>No uploads, no storage, no accounts. Camera stops when you leave.</p></article>
+    </div>
+  </section>
+
+  <section id="how" class="section">
+    <h2>How it works</h2>
+    <ol class="steps">
+      <li class="glass"><b>1</b><span>Press Start Creating and allow camera access.</span></li>
+      <li class="glass"><b>2</b><span>MediaPipe Face Landmarker finds 478 facial points locally.</span></li>
+      <li class="glass"><b>3</b><span>Pick tools. Designs are drawn on a canvas and follow your face.</span></li>
+    </ol>
+  </section>
+
+  <section id="about" class="section">
+    <h2>About</h2>
+    <p class="about">FaceArt is an open-source portfolio project built with Vite, vanilla JavaScript, the Canvas API and Google's MediaPipe Face Landmarker. Video frames never leave your device.</p>
+  </section>
+</main>
+
+<footer class="footer">
+  <span>© FaceArt · Open-source project</span>
+  <a href="https://github.com/your-username/faceart" target="_blank" rel="noopener">GitHub</a>
+</footer>
+
+<div id="studio" class="studio" hidden>
+  <div class="studio-top glass">
+    <button class="btn ghost small" id="closeStudio">← Back</button>
+    <span id="status" class="status">Camera off</span>
+    <button class="btn small" id="camToggle">Start Camera</button>
+  </div>
+  <div class="stage-wrap">
+    <div id="stage" class="stage">
+      <video id="video" playsinline muted></video>
+      <canvas id="overlay"></canvas>
+      <canvas id="paint"></canvas>
+    </div>
+    <div id="msg" class="msg glass">Press <b>Start Camera</b> to begin. Your video never leaves this device.</div>
+    <div id="loader" class="loader" hidden><div class="spin"></div><span>Loading face model…</span></div>
+  </div>
+  <div class="toolbar glass" id="toolbar">
+    <div class="group">
+      <button class="tool" data-toggle="glasses">👓<small>Glasses</small></button>
+      <button class="tool" data-toggle="crown">👑<small>Crown</small></button>
+      <button class="tool" data-toggle="moustache">🥸<small>Moustache</small></button>
+      <button class="tool" data-toggle="decor">✨<small>Decor</small></button>
+    </div>
+    <div class="group">
+      <button class="tool" data-mode="brush">🖌️<small>Draw</small></button>
+      <button class="tool" data-mode="eraser">🧽<small>Eraser</small></button>
+      <label class="tool">🎨<small>Colour</small><input type="color" id="color" value="#ff4d8d" /></label>
+      <label class="tool size">⚫<small>Size</small><input type="range" id="size" min="2" max="40" value="8" /></label>
+    </div>
+    <div class="group">
+      <button class="tool" id="clear">🗑️<small>Clear</small></button>
+      <button class="tool" id="reset">↺<small>Reset</small></button>
+    </div>
+  </div>
+</div>
+<script type="module" src="/src/main.js"></script>
+</body>
+</html>
